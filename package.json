@@ -1,0 +1,15 @@
+{
+  "name": "site-compiler",
+  "version": "1.0.0",
+  "description": "A simple site compiler with handlebars",
+  "main": "index.js",
+  "scripts": {
+    "compile": "cd src && node index.js"
+  },
+  "keywords": [],
+  "author": "Faulty",
+  "license": "MIT",
+  "dependencies": {
+    "handlebars": "^4.7.7"
+  }
+}

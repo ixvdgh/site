@@ -1,0 +1,21 @@
+stages:
+  - build
+  - deploy
+
+build:
+  stage: build
+  image: node:8
+  script:
+    - npm install
+    - npm run build
+  artifacts:
+    paths:
+      - dist/
+
+deploy:
+  stage: deploy
+  image: nginx:1.13
+  script:
+    - cp -r dist/* /usr/share/nginx/html/
+  only:
+    - master

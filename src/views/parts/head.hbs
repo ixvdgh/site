@@ -1,0 +1,26 @@
+<!-- {{ get_latest_commit }} -->
+
+<!DOCTYPE html>
+<head>
+    <title>{{ title }} - {{ site_name }}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {{#if description}}
+        <meta name="description" content="{{ description }}">
+    {{/if}}
+    {{#if keywords}}
+        <meta name="keywords" content="{{ keywords }}">
+    {{/if}}
+    {{#if canonical}}
+        <link rel="canonical" href="{{ canonical }}">
+    {{/if}}
+    {{#if robots}}
+        <meta name="robots" content="{{ robots }}">
+    {{/if}}
+    {{#if favicon}}
+        <link rel="shortcut icon" href="{{ favicon }}">
+    {{/if}}
+    {{ asset 'generic.css' }}
+
+    {{{ assets }}}
+</head>
