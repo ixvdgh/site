@@ -1,21 +1,32 @@
 stages:
-  - build
+  - build-n-test
   - deploy
 
-build:
-  stage: build
-  image: node:8
+build-n-test:
+  stage: build-n-test
+  image: node:latest
   script:
     - npm install
     - npm run compile
-  artifacts:
-    paths:
-      - dist/
 
 deploy:
   stage: deploy
-  image: nginx:1.13
+  image: docker:latest
+  services:
+    - docker:dind
   script:
-    - cp -r dist/* /usr/share/nginx/html/
+    - docker build -t $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG .
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
+
+deploy-stable:
+  stage: deploy
+  image: docker:latest
+  services:
+    - docker:dind
+  script:
+    - docker build -t $CI_REGISTRY_IMAGE:stable .
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - docker push $CI_REGISTRY_IMAGE:stable
   only:
-    - master
+    - main
