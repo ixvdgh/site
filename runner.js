@@ -31,7 +31,7 @@ let routes = {
                 console.log(e);
                 res.writeHead(500);
                 res.end('FAIL');
-                return
+                return;
             }
         }
         res.end('OK');
