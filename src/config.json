@@ -1,5 +1,5 @@
 {
-  "base_url": "https://faulty.nl/",
+  "base_url": "/",
   "output_dir": "../dist",
   "repo_url": "https://git.faulty.nl/didier/site",
 

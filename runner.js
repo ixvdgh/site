@@ -24,19 +24,16 @@ let routes = {
             'npm install',
             'npm run compile ' + process.env.SERVER_TYPE || 'prod',
         ];
-        cmds.forEach(cmd => {
+        for (let cmd of cmds) {
             try {
-                // res.write(child_process.execSync(cmd).toString() + '\n');
-                let time_start = Date.now();
-                child_process.execSync(cmd);
-                let time_end = Date.now();
-                res.write(`CMD: ${cmd} (${time_end - time_start}ms)\n`);
+                res.write(child_process.execSync(cmd).toString() + '\n');
             } catch (e) {
                 console.log(e);
                 res.writeHead(500);
                 res.end('FAIL');
+                return
             }
-        })
+        }
         res.end('OK');
     },
     '/sysinfo': (req, res) => {
