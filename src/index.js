@@ -19,7 +19,7 @@ Handlebars.registerHelper('get_latest_commit', function () {
 
 let assets = [];
 Handlebars.registerHelper('asset', function (p) {
-    let full_p = path.join(cfg.base_url, 'public', p);
+    let full_p = path.join('/public', p);
     assets.push({
         path: full_p,
         type: p.split('.').pop()
@@ -68,10 +68,6 @@ function rCopy(src, dest) {
     } else {
         fs.copyFileSync(src, dest);
     }
-}
-
-if (process.argv[2] === 'dev') {
-    cfg.base_url = './'; // for dev, we don't want a base url
 }
 
 fs.mkdirSync(cfg.output_dir || 'dist', {recursive: true});
