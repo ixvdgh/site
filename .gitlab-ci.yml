@@ -7,7 +7,7 @@ build:
   image: node:8
   script:
     - npm install
-    - npm run build
+    - npm run compile
   artifacts:
     paths:
       - dist/
