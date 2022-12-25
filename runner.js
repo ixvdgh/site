@@ -58,14 +58,28 @@ let routes = {
     }
 }
 
-http.createServer((req, res) => {
-    console.log('INC: [' + req.method + '] ' + req.url);
-    if (routes[req.url]) {
-        routes[req.url](req, res);
-    } else {
-        routes['*'](req, res);
+function server() {
+    http.createServer((req, res) => {
+        console.log('INC: [' + req.method + '] ' + req.url);
+        if (routes[req.url]) {
+            routes[req.url](req, res);
+        } else {
+            routes['*'](req, res);
+        }
+        console.log('OUT: [' + res.statusCode + '] ' + req.url);
+    }).listen(process.env.PORT || 80, () => {
+        console.log('Server started');
+    });
+}
+
+// restart server on crash
+function restart() {
+    try {
+        server();
+    } catch (e) {
+        console.log(e);
+        restart();
     }
-    console.log('OUT: [' + res.statusCode + '] ' + req.url);
-}).listen(process.env.PORT || 80, () => {
-    console.log('Server started');
-});
+}
+
+restart();
