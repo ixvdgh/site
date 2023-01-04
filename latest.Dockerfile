@@ -1,6 +1,7 @@
-FROM node:19-alpine
+FROM node:19
 
-RUN apk add npm git openssh-client
+RUN apt update
+RUN apt install -y npm git openssh-client
 
 RUN git clone https://git.faulty.nl/didier/site.git /app
 
