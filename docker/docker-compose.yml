@@ -3,7 +3,7 @@ version: '3.3'
 services:
   web:
     build:
-      context: .
-      dockerfile: latest.Dockerfile
+      context: ..
+      dockerfile: latest.default.Dockerfile
     ports:
       - "8000:80"

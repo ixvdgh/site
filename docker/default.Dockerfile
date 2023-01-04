@@ -2,7 +2,7 @@ FROM node:19-alpine
 
 RUN apk add npm git openssh-client
 
-COPY . /app
+COPY .. /app
 
 WORKDIR /app
 RUN git remote set-url origin https://git.faulty.nl/didier/site.git
