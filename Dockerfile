@@ -1,11 +1,11 @@
 FROM node:19-alpine
 
-RUN apk add npm git
+RUN apk add npm git openssh-client
 
-COPY . /tmp/app
+COPY . /app
 
-RUN git clone https://git.faulty.nl/didier/site /app
 WORKDIR /app
+RUN git remote set-url origin https://git.faulty.nl/didier/site.git
 RUN npm install
 RUN npm run compile
 

@@ -16,13 +16,18 @@ function sysInfo() {
     return out;
 }
 
+let doingUpdate = false;
 let routes = {
-    '/do_update': (req, res) => {
+    '/@update': async (req, res) => {
+        if (doingUpdate) return res.end('Already updating');
         console.log('UPDATE');
+        doingUpdate = true;
         let cmds = [
+            'cd /app',
+            'git log -1',
             'git pull',
             'npm install',
-            'npm run compile ' + process.env.SERVER_TYPE || 'prod',
+            'npm run compile'
         ];
         for (let cmd of cmds) {
             try {
@@ -31,10 +36,12 @@ let routes = {
                 console.log(e);
                 res.writeHead(500);
                 res.end('FAIL');
+                doingUpdate = false;
                 return;
             }
         }
         res.end('OK');
+        doingUpdate = false;
     },
     '/sysinfo': (req, res) => {
         res.end(JSON.stringify(sysInfo(), null, 4));
@@ -56,12 +63,12 @@ let routes = {
 }
 
 function server() {
-    http.createServer((req, res) => {
+    http.createServer(async (req, res) => {
         console.log('INC: [' + req.method + '] ' + req.url);
         if (routes[req.url]) {
-            routes[req.url](req, res);
+            await routes[req.url](req, res);
         } else {
-            routes['*'](req, res);
+            await routes['*'](req, res);
         }
         console.log('OUT: [' + res.statusCode + '] ' + req.url);
     }).listen(process.env.PORT || 80, () => {
