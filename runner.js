@@ -31,7 +31,9 @@ let routes = {
         ];
         for (let cmd of cmds) {
             try {
+                res.write('$ ' + cmd);
                 res.write(child_process.execSync(cmd).toString() + '\n');
+                res.write('# OK');
             } catch (e) {
                 console.log(e);
                 res.writeHead(500);
