@@ -1,30 +1,22 @@
-{{ asset 'index.css' }}
+{{{ asset 'default.css' }}}
 {{{ include 'parts/head.hbs' title="Home" }}}
 
 <body>
-<section id="about">
-    <h1>Faulty</h1>
-    <p>
-        I am Didier a.k.a. Faulty. <br/>
-        Faulty, over time, has become more of a group than a nickname. <br/>
-        FaultyGit has over 50 projects spread over multiple users, organisations and repositories. <br/>
-</section>
+    <section>
+        {{{ include 'parts/logo.hbs' }}}
 
-<section id="links">
-    <h2>Links</h2>
-    <ul>
-        <li><a href="//git.faulty.nl/didier">GitLab</a></li>
-        <li><a href="//github.com/faultydev">GitHub</a></li>
-    </ul>
-</section>
-
-<section id="other">
-    <h2>Notice</h2>
-    <span>
-        Say hello to neo, the new server! <br/>
-    </span>
-</section>
-
+        <span>ixvd is a collaborative platform.</span><br />
+        <span>The community around IXVD was first based around an online pseudonym of someone in the community, however
+            as the the community grew it didn't feel appropiate to use their pseudonym anymore.</span>
+    </section>
+    <section class="sidebar">
+        <div id="links">
+            <ul>
+                <li><a href="//git.ixvd.net">Git</a></li>
+                <li><a href="//share.neo.ixvd.net">File sharing</a></li>
+            </ul>
+        </div>
+    </section>
 </body>
 
 {{{ include 'parts/footer.hbs' }}}

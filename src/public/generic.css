@@ -10,7 +10,8 @@
 
     --transition-duration: 0.3s;
 
-    --font-family: 'Roboto', sans-serif;
+    --font-family: monospace;
+    --font-size: 1.2em;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -31,6 +32,7 @@ body {
     background-color: var(--background-color);
     color: var(--text-color);
     font-family: var(--font-family);
+    font-size: var(--font-size);
 }
 
 a {
