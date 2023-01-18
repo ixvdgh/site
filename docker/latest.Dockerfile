@@ -11,7 +11,7 @@ RUN chmod 600 /root/.ssh/id_rsa
 RUN echo "StrictHostKeyChecking no" >> /etc/ssh/ssh_config
 # I'll save you the hastle, this key is only used for cloning the repo, it's not used for anything else.
 
-RUN git clone git@git.faulty.nl:didier/site /app
+RUN git clone git@git.ixvd.net:this/site /app
 
 WORKDIR /app
 
